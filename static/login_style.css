@@ -88,6 +88,11 @@ input[type=password]
   margin-bottom:10px;
 }
 
+.error{
+
+    color:red;
+}
+
 input[type=submit]
 {
     width: 100%;

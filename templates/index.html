@@ -1,10 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
-</head>
-<body>
-    <p>Hello World!</p>
-</body>
-</html>
+<link rel="stylesheet" type="text/css" href="/static/login_style.css">
+<div class="grandParentContaniner">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+	  {% if messages %}
+	    {% for category, message in messages %}
+    <div class="{{ category }}"></div>
+		{% endfor %}
+	  {% endif %}
+	{% endwith %}
+
+	{% block body %}{% endblock %}
+<div class="parentContainer">
+<form method="post">
+  <h1>Welcome to Scry</h1>
+  <div class="inset">
+  <p>
+    <label for="email">EMAIL ADDRESS</label>
+    <input type="text" name="email" id="email">
+  </p>
+  <p>
+    <label for="password">PASSWORD</label>
+    <input type="password" name="password" id="password">
+  </p>
+      <p>
+          <div class = "forgot">
+        <a href="reset_password" style="color:#0d93ff">Forgot Password?</a>
+        </div>
+
+      </p>
+      <p>
+        <input type="submit" name="go" id="go" value="LOGIN">
+      </p>
+      <p class = signUp>
+          Dont have an account? <a href="sign_up" style="color:#0d93ff">SIGN UP</a>
+      </p>
+  </div>
+</form>
+    {% if error %}
+        <p class="error"><strong>Error:</strong> {{ error }}
+      {% endif %}
+</div>
+</div>

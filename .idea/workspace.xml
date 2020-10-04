@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b64b388-a378-4111-b232-dc6ff05d63fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/login_style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/log_in.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/my_sql.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scry.py" beforeDir="false" afterPath="$PROJECT_DIR$/scry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/login_style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/login_style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/log_in.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +19,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="JavaScript File" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -58,8 +61,30 @@
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.scry">
-    <configuration name="login.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/scry/templates/login.html" useBuiltInWebServerPort="true">
+  <component name="RunManager" selected="Python.my_sql">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/scry/templates/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="my_sql" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scry" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_sql.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
     <configuration name="sarima" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -108,8 +133,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.my_sql" />
         <item itemvalue="Python.scry" />
-        <item itemvalue="JavaScript Debug.login.html" />
+        <item itemvalue="JavaScript Debug.index.html" />
         <item itemvalue="Python.sarima" />
       </list>
     </recent_temporary>
@@ -125,7 +151,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601680229143</updated>
-      <workItem from="1601691151887" duration="16233000" />
+      <workItem from="1601691151887" duration="23505000" />
     </task>
     <servers />
   </component>
@@ -133,22 +159,22 @@
     <option name="version" value="3" />
   </component>
   <component name="WindowStateProjectService">
-    <state width="1117" height="155" key="GridCell.Tab.0.bottom" timestamp="1601766228054">
+    <state width="1117" height="145" key="GridCell.Tab.0.bottom" timestamp="1601778316302">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state width="1117" height="155" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1601766228054" />
-    <state width="1117" height="155" key="GridCell.Tab.0.center" timestamp="1601766228054">
+    <state width="1117" height="145" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1601778316302" />
+    <state width="1117" height="145" key="GridCell.Tab.0.center" timestamp="1601778316302">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state width="1117" height="155" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1601766228054" />
-    <state width="1117" height="155" key="GridCell.Tab.0.left" timestamp="1601766228053">
+    <state width="1117" height="145" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1601778316302" />
+    <state width="1117" height="145" key="GridCell.Tab.0.left" timestamp="1601778316301">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state width="1117" height="155" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1601766228053" />
-    <state width="1117" height="155" key="GridCell.Tab.0.right" timestamp="1601766228054">
+    <state width="1117" height="145" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1601778316301" />
+    <state width="1117" height="145" key="GridCell.Tab.0.right" timestamp="1601778316302">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state width="1117" height="155" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1601766228054" />
+    <state width="1117" height="145" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1601778316302" />
     <state x="76" y="23" width="997" height="709" key="SettingsEditor" timestamp="1601691323611">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
@@ -159,6 +185,7 @@
     <state x="294" y="241" key="com.intellij.ide.util.TipDialog/0.23.1280.709@0.23.1280.709" timestamp="1601688466740" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/scry$scry.coverage" NAME="scry Coverage Results" MODIFIED="1601766228040" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scry$scry.coverage" NAME="scry Coverage Results" MODIFIED="1601773475879" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scry$my_sql.coverage" NAME="my_sql Coverage Results" MODIFIED="1601778316290" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

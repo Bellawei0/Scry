@@ -1,24 +1,26 @@
-from flask import Flask
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, redirect, render_template, request, url_for, flash
 import os
 
 app = Flask(__name__)
 
-@app.route('/')
-def home():
-    if not session.get('logged_in'):
-        return render_template('log_in.html')
-    else:
-        return "Hello Boss!"
 
-@app.route('/log_in', methods=['POST'])
-def do_admin_login():
-    if request.form['password'] == 'password' and request.form['username'] == 'admin':
-        session['logged_in'] = True
-    else:
-        flash('wrong password!')
-        return home()
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    print("a")
+    error = None
+    if request.method == 'POST':
+        print("b")
+        if request.form['email'] != 'yourmom@aol.com' or request.form['password'] != '12345678':
+            error = 'Invalid Credentials, Please Try Again.'
+            flash(error, category=error)
+        else:
+            return redirect(url_for('home'))
+    return render_template('index.html', error = error)
+
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
 if __name__ == "__main__":
     app.secret_key = os.urandom(12)
-    app.run(debug=True,host='0.0.0.0', port=4000)
+    app.run(debug=True, host='0.0.0.0', port=4000)
