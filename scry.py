@@ -1,26 +1,120 @@
-from flask import Flask, redirect, render_template, request, url_for, flash
-import os
+###################IMPORTS
+from flask_sqlalchemy import SQLAlchemy
+from flask import Flask, request, jsonify
+import re
+from flask_cors import CORS
+###################
 
+############################APP CONFIG
 app = Flask(__name__)
+app.config[
+    "SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://admin:Cascade5995$$$@cmpe172.cxubifgi6ctr.us-west-1.rds.amazonaws.com:3306/bank'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+CORS(app)
+#####################################
 
 
-@app.route('/', methods=['GET', 'POST'])
+################### DB CONFIG
+db = SQLAlchemy(app)
+
+
+class Users(db.Model):
+    id = db.Column('student_id', db.Integer,
+                   primary_key=True)  # primary_key makes it so that this value is unique and can be used to identify this record.
+    username = db.Column(db.String(24))
+    email = db.Column(db.String(64))
+    pwd = db.Column(db.String(64))
+
+    # Constructor
+    def __init__(self, username, email, pwd):
+        self.username = username
+        self.email = email
+        self.pwd = pwd
+
+
+##########################################################
+
+
+########METHODS##############
+def getUsers():
+    users = Users.query.all()
+    return [{"id": i.id, "username": i.username, "email": i.email, "password": i.pwd} for i in users]
+
+
+def addUser(username, email, pwd):
+    if (username and pwd and email):
+        try:
+            user = Users(username, email, pwd)
+            db.session.add(user)
+            db.session.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+    else:
+        return False
+
+
+def removeUser(uid):
+    uid = request.json["id"]
+    if (uid):
+        try:
+            user = Users.query.get(uid)
+            db.session.delete(user)
+            db.session.commit()
+            return True
+        except Exception as e:
+            print(e)
+            return False
+    else:
+        return False
+
+
+###################ROUTES
+@app.route("/api/login", methods=["POST"])
 def login():
-    print("a")
-    error = None
-    if request.method == 'POST':
-        print("b")
-        if request.form['email'] != 'yourmom@aol.com' or request.form['password'] != '12345678':
-            error = 'Invalid Credentials, Please Try Again.'
-            flash(error, category=error)
+    try:
+        email = request.json["email"]
+        password = request.json["pwd"]
+        if (email and password):
+            users = getUsers()
+            # Check if user exists
+            print("a")
+            if (len(list(filter(lambda x: x["email"] == email, users))) == 0):
+                return jsonify({"error": "Invalid form1"})
+            return jsonify(len(list(filter(lambda x: x["email"] == email and x["password"] == password, users))) == 1)
         else:
-            return redirect(url_for('home'))
-    return render_template('index.html', error = error)
+            print("p")
+            return jsonify({"error": "Invalid form"})
+    except:
+        print("w")
+        return jsonify({"error": "Invalid form"})
 
-@app.route('/home')
-def home():
-    return render_template('home.html')
 
+@app.route("/api/register", methods=["POST"])
+def register():
+    try:
+        email = request.json["email"]
+        email = email.lower()
+        password = request.json["pwd"]
+        username = request.json["username"]
+        # Check to see if user already exists
+        users = getUsers()
+        if (len(list(filter(lambda x: x["email"] == email, users))) == 1):
+            return jsonify({"error": "Invalid form1"})
+        # Email validation check
+        if not re.match(r"[\w\._]{5,}@\w{3,}.\w{2,4}", email):
+            return jsonify({"error": "Invalid form2"})
+        addUser(username, email, password)
+        return jsonify({"success": True})
+    except:
+        return jsonify({"error": "Invalid form3"})
+
+
+####################################
+
+
+##########APP
 if __name__ == "__main__":
-    app.secret_key = os.urandom(12)
-    app.run(debug=True, host='0.0.0.0', port=4000)
+    app.run(debug=True)
+######################
