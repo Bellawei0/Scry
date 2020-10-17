@@ -1,9 +1,11 @@
 import pandas
 import numpy
+from boto3.dynamodb.conditions import Key
 from matplotlib import pyplot
 from statsmodels.tsa.statespace.sarimax import SARIMAX
-
-
+import io
+import boto3
+import matplotlib.image as mpimg
 # Calculate MAPE (mean absolute percentage error)
 # @param1   actual value
 # @param2   predicted value
@@ -86,12 +88,27 @@ d.append(testy[-1])
 for i in range(len(derp)):
     d.append(derp[i])
 
-#d = pandas.DataFrame(d).values
+d = pandas.DataFrame(d).values
 
 
-#pyplot.plot(predictions, color='blue')
+pyplot.plot(predictions, color='blue')
 pyplot.plot(testy, color='red')
 pyplot.plot(pp, color = 'blue')
 pyplot.plot(d, color='green')
+img_data = io.BytesIO()
+pyplot.savefig(img_data, format='png')
+img_data.seek(0)
+
+s3 = boto3.client('s3')
+s3.upload_fileobj(img_data, 'sjsu-cmpe172-scry', 'test.png')
 pyplot.show()
 
+resource = boto3.resource('s3')
+bucket = resource.Bucket('sjsu-cmpe172-scry')
+
+image_object = bucket.Object('test.png')
+image = mpimg.imread(io.BytesIO(image_object.get()['Body'].read()), 'png')
+
+pyplot.figure(0)
+pyplot.imshow(image)
+pyplot.show()
