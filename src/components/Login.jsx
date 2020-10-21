@@ -2,27 +2,32 @@
 import React, { Component } from "react";
 import axios from "axios";
 import Alert from "./Alert";
-import "./Login.css";
+//import "./Login.css";
+import {login} from "../login";
+import {check} from "../login";
 
 class Login extends Component {
     state = { err: "" };
+
+    componentDidMount() {
+        check().then(r => {if (r) {
+            window.location = "/"
+        }})
+    }
+    
     login = (e) => {
         e.preventDefault();
-        axios
-            .post("http://127.0.0.1:5000/api/login", {
-                email: document.getElementById("email").value,
-                pwd: document.getElementById("password").value,
-            })
-            .then((res) => {
-                if (res.data.error) {
-                    this.setState({ err: res.data.error });
-                } else {
-                    this.setState({ login: true });
-                }
-            });
+        login(document.getElementById("email").value,
+            document.getElementById("password").value).then(r => {
+            if (r === true) {
+                window.location = "/"
+            } else {
+                this.setState({err: r})
+            }
+        })
     };
 
-        render() {
+    render() {
         return (
             <div className="grandParentContaniner">
                 <div className="parentContainer">

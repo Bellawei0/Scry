@@ -8,7 +8,7 @@ class Register extends Component {
     register = (e) => {
         e.preventDefault();
         axios
-            .post("http://127.0.0.1:5000/api/register", {
+            .post("/api/register", {
                 email: document.getElementById("email").value,
                 username: document.getElementById("username").value,
                 pwd: document.getElementById("password").value,
@@ -17,12 +17,12 @@ class Register extends Component {
                 if (res.data.error) {
                     this.setState({ err: res.data.error });
                 } else {
-                    this.setState({ register: true });
+                    window.location = "/login"
                 }
             });
     };
 
-        render() {
+    render() {
         return (
             <div className="w3-card-4" style={{ margin: "2rem" }}>
                 <div className="w3-container w3-blue w3-center w3-xlarge">
