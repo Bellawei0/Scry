@@ -91,24 +91,33 @@ for i in range(len(derp)):
 d = pandas.DataFrame(d).values
 
 
-pyplot.plot(predictions, color='blue')
-pyplot.plot(testy, color='red')
-pyplot.plot(pp, color = 'blue')
-pyplot.plot(d, color='green')
-img_data = io.BytesIO()
-pyplot.savefig(img_data, format='png')
-img_data.seek(0)
+#pyplot.plot(predictions, color='blue')
+#pyplot.plot(testy, color='red')
+#pyplot.plot(pp, color = 'blue')
+#pyplot.plot(d, color='green')
+#img_data = io.BytesIO()
+#pyplot.savefig(img_data, format='png')
+#img_data.seek(0)
+#s3 = boto3.client('s3')
+s3_client = boto3.client('s3')
+try:
+    response = s3_client.generate_presigned_url('get_object',
+                                                Params={'Bucket': 'sjsu-cmpe172-scry',
+                                                        'Key': 'test.png'},
+                                                ExpiresIn=7200)
+    print(response)
+except ClientError as e:
+    logging.error(e)
+    print(e)
+#s3.upload_fileobj(img_data, 'sjsu-cmpe172-scry', 'test.png')
+#pyplot.show()
 
-s3 = boto3.client('s3')
-s3.upload_fileobj(img_data, 'sjsu-cmpe172-scry', 'test.png')
-pyplot.show()
+#resource = boto3.resource('s3')
+#bucket = resource.Bucket('sjsu-cmpe172-scry')
 
-resource = boto3.resource('s3')
-bucket = resource.Bucket('sjsu-cmpe172-scry')
-
-image_object = bucket.Object('test.png')
-image = mpimg.imread(io.BytesIO(image_object.get()['Body'].read()), 'png')
-
-pyplot.figure(0)
-pyplot.imshow(image)
-pyplot.show()
+#image_object = bucket.Object('test.png')
+#file_stream = io.BytesIO(image_object.get()['Body'].read())
+#image = mpimg.imread(io.BytesIO(image_object.get()['Body'].read()), 'png')
+#from PIL import Image
+#im = Image.open(file_stream)
+#im.show()
