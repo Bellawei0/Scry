@@ -22,7 +22,20 @@ class Tweet(db.Model):
     title = db.Column(db.String(256))
     content = db.Column(db.String(2048))
 
+class Request(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user = db.relationship('User', foreign_keys=uid)
+    datasetid = db.Column(db.Integer)
+    length = db.Column(db.Integer)
 
+class Data(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user = db.relationship('User', foreign_keys=uid)
+    productName = db.Column(db.String(256))
+    description = db.Column(db.String(2048))
+    s3key = db.Column(db.String(256))
 ##########################################################
 
 
@@ -60,6 +73,20 @@ def removeUser(uid):
         return False
 
 
+def getRequest():
+    requests = Request.query.order_by(Request.id.desc())
+    request = list(requests)[0]
+    return {"id": request.id, "uid": request.uid, "user": getUser(request.uid), "DatasetID":request.datasetid, "length":request.length}
+
+def getUserRequest(uid):
+    requests = Request.query.filter_by(uid= uid).order_by(Request.id.desc()).all()
+    request = list(requests)[0]
+    return {"id": request.id, "uid": request.uid, "user": getUser(request.uid), "DatasetID":request.datasetid, "length":request.length}
+
+
+def getData():
+    datasets = Data.query.all()
+    return[{"id": i.id, "uid": i.uid, "user": getUser(i.uid), "ProductName": i.productName, "Description": i.description, "S3Key":i.s3key} for i in datasets]
 
 def getTweets():
     tweets = Tweet.query.all()
@@ -83,6 +110,28 @@ def addTweet(title, content, uid):
         print(e)
         return False
 
+def addData(productName, description, s3key, uid):
+    try:
+        user = list(filter(lambda i: i.id == uid, User.query.all()))[0]
+        dataset = Data(user=user, productName=productName, description=description, s3key=s3key,)
+        db.session.add(dataset)
+        db.session.commit()
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+def addRequest(uid, did, length):
+    try:
+        user = list(filter(lambda i: i.id == uid, User.query.all()))[0]
+        request = Request(user=user, datasetid=did, length=length)
+        db.session.add(request)
+        db.session.commit()
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
 
 def delTweet(tid):
     try:
@@ -95,6 +144,29 @@ def delTweet(tid):
     except Exception as e:
         print(e)
         return False
+
+def delData(did):
+    try:
+        data = Data.query.get(did)
+        db.session.delete(data)
+        db.session.commit()
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
+def delRequest(rid):
+    try:
+        request = Request.query.get(rid)
+        db.session.delete(request)
+        db.session.commit()
+        print("Successfully deleted request")
+        return True
+    except Exception as e:
+        print("delete request failed")
+        print(e)
+        return False
+
 
 class InvalidToken(db.Model):
     __tablename__ = "invalid_tokens"

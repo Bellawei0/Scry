@@ -1,4 +1,4 @@
-from models import User, Tweet, InvalidToken,getUser, getUsers, addUser, removeUser, getTweets, getUserTweets, addTweet, delTweet
+from models import User, Tweet, InvalidToken,getUser, getUsers, addUser, removeUser, getTweets, getUserTweets, addTweet, delTweet, getRequest, Request, Data, addData, getData, delData, addRequest, delRequest, getUserRequest
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, jsonify
 import re
@@ -49,7 +49,7 @@ def login():
 
 @app.route("/api/register", methods=["POST"])
 def register():
-    # db.create_all()
+    print(getUsers())
     try:
         email = request.json["email"]
         email = email.lower()
@@ -66,8 +66,21 @@ def register():
             return jsonify({"error": "Invalid e-mail address"})
         addUser(username, email, password)
         return jsonify({"success": True})
-    except:
+    except Exception as e:
+        print(e)
         return jsonify({"error": "Invalid form"})
+
+
+@app.route("/api/forecast")
+@jwt_required
+def forecast():
+    print("HELL0")
+    uid = get_jwt_identity()
+    print("uid:")
+    print(uid)
+    req = getRequest()
+    print(req)
+    return jsonify({"success": True})
 
 
 @app.route("/api/checkiftokenexpire", methods=["POST"])

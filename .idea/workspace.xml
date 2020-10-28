@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b64b388-a378-4111-b232-dc6ff05d63fd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sarima.py" beforeDir="false" afterPath="$PROJECT_DIR$/sarima.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scry.py" beforeDir="false" afterPath="$PROJECT_DIR$/scry.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/login_style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +189,11 @@
       <workItem from="1602982351469" duration="1818000" />
       <workItem from="1602984553093" duration="193000" />
       <workItem from="1603151471511" duration="2762000" />
-      <workItem from="1603158419260" duration="5932000" />
+      <workItem from="1603158419260" duration="7288000" />
+      <workItem from="1603320546238" duration="4167000" />
+      <workItem from="1603499552942" duration="1132000" />
+      <workItem from="1603770021763" duration="8221000" />
+      <workItem from="1603839771563" duration="8161000" />
     </task>
     <servers />
   </component>
@@ -205,22 +205,34 @@
       <screen x="0" y="23" width="1280" height="709" />
     </state>
     <state x="413" y="261" key="#Notifications/0.23.1280.709@0.23.1280.709" timestamp="1602920634076" />
-    <state width="1238" height="145" key="GridCell.Tab.0.bottom" timestamp="1603228305136">
-      <screen x="0" y="23" width="1280" height="709" />
+    <state width="1238" height="174" key="GridCell.Tab.0.bottom" timestamp="1603866156055">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="145" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1603228305136" />
-    <state width="1238" height="145" key="GridCell.Tab.0.center" timestamp="1603228305135">
-      <screen x="0" y="23" width="1280" height="709" />
+    <state width="1238" height="174" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1603866156055" />
+    <state width="1695" height="174" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1603864638657" />
+    <state width="1425" height="145" key="GridCell.Tab.0.bottom/0.23.1280.715@0.23.1280.715" timestamp="1603499122117" />
+    <state width="1425" height="145" key="GridCell.Tab.0.bottom/0.23.1280.727@0.23.1280.727" timestamp="1603325414994" />
+    <state width="1238" height="174" key="GridCell.Tab.0.center" timestamp="1603866156054">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="145" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1603228305135" />
-    <state width="1238" height="145" key="GridCell.Tab.0.left" timestamp="1603228305135">
-      <screen x="0" y="23" width="1280" height="709" />
+    <state width="1238" height="174" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1603866156054" />
+    <state width="1695" height="174" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1603864638656" />
+    <state width="1425" height="145" key="GridCell.Tab.0.center/0.23.1280.715@0.23.1280.715" timestamp="1603499122116" />
+    <state width="1425" height="145" key="GridCell.Tab.0.center/0.23.1280.727@0.23.1280.727" timestamp="1603325414967" />
+    <state width="1238" height="174" key="GridCell.Tab.0.left" timestamp="1603866156053">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="145" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1603228305135" />
-    <state width="1238" height="145" key="GridCell.Tab.0.right" timestamp="1603228305136">
-      <screen x="0" y="23" width="1280" height="709" />
+    <state width="1238" height="174" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1603866156053" />
+    <state width="1695" height="174" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1603864638655" />
+    <state width="1425" height="145" key="GridCell.Tab.0.left/0.23.1280.715@0.23.1280.715" timestamp="1603499122115" />
+    <state width="1425" height="145" key="GridCell.Tab.0.left/0.23.1280.727@0.23.1280.727" timestamp="1603325414966" />
+    <state width="1238" height="174" key="GridCell.Tab.0.right" timestamp="1603866156055">
+      <screen x="0" y="0" width="1280" height="800" />
     </state>
-    <state width="1238" height="145" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1603228305136" />
+    <state width="1238" height="174" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1603866156055" />
+    <state width="1695" height="174" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1603864638656" />
+    <state width="1425" height="145" key="GridCell.Tab.0.right/0.23.1280.715@0.23.1280.715" timestamp="1603499122116" />
+    <state width="1425" height="145" key="GridCell.Tab.0.right/0.23.1280.727@0.23.1280.727" timestamp="1603325414994" />
     <state x="76" y="23" width="997" height="709" key="SettingsEditor" timestamp="1602989505381">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
@@ -237,7 +249,7 @@
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/scry$test.coverage" NAME="test Coverage Results" MODIFIED="1601789571622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/scry$sarima.coverage" NAME="sarima Coverage Results" MODIFIED="1602983929058" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/scry$scry.coverage" NAME="scry Coverage Results" MODIFIED="1603228305120" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/scry$scry.coverage" NAME="scry Coverage Results" MODIFIED="1603864638637" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/scry$my_sql.coverage" NAME="my_sql Coverage Results" MODIFIED="1602709556146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
