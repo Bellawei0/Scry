@@ -20,6 +20,9 @@ function TweetItem(props) {
                     {props.isOwner &&
                     <button className="w3-right w3-button w3-red w3-large w3-hover-pale-red w3-round-large" onClick={() => deleteTweet(props.id)}>Delete                    
                     </button>}
+                    <button className="w3-right w3-button w3-red w3-large w3-hover-pale-red w3-round-large" onClick={() => {
+                        window.location = "/forecast"
+                    }}>Get Forecast</button>    
                 </h2>
                 <div dangerouslySetInnerHTML={{__html: props.content}}/>
             </div>
