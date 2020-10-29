@@ -73,11 +73,6 @@ def removeUser(uid):
         return False
 
 
-def getRequest():
-    requests = Request.query.order_by(Request.id.desc())
-    request = list(requests)[0]
-    return {"id": request.id, "uid": request.uid, "user": getUser(request.uid), "DatasetID":request.datasetid, "length":request.length}
-
 def getUserRequest(uid):
     requests = Request.query.filter_by(uid= uid).order_by(Request.id.desc()).all()
     request = list(requests)[0]
@@ -154,6 +149,11 @@ def delData(did):
     except Exception as e:
         print(e)
         return False
+
+def getDataset(did):
+    data = Data.query.get(did)
+    return{"id": data.id, "uid": data.uid, "user": getUser(data.uid), "ProductName": data.productName, "Description": data.description, "S3Key":data.s3key}
+
 
 def delRequest(rid):
     try:

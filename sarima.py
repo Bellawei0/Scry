@@ -6,10 +6,9 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 import io
 import boto3
 import matplotlib.image as mpimg
-# Calculate MAPE (mean absolute percentage error)
-# @param1   actual value
-# @param2   predicted value
-# @return   mean absolute percentage error between actual and predicted
+import math
+
+
 def mape(actual, predicted):
     return numpy.mean(numpy.abs((actual - predicted) / actual)) * 100
 
@@ -90,7 +89,17 @@ for i in range(len(derp)):
 
 d = pandas.DataFrame(d).values
 
+fdict = {}
+stringy = "Period "
+vals = []
 
+for i in range(len(d)):
+    if not numpy.isnan(numpy.float64(d[i][0])):
+        vals.append(d[i][0])
+for i in range(1, len(vals)):
+    fdict[stringy + str(i)] = vals[i]
+
+print(fdict)
 #pyplot.plot(predictions, color='blue')
 #pyplot.plot(testy, color='red')
 #pyplot.plot(pp, color = 'blue')
@@ -99,16 +108,7 @@ d = pandas.DataFrame(d).values
 #pyplot.savefig(img_data, format='png')
 #img_data.seek(0)
 #s3 = boto3.client('s3')
-s3_client = boto3.client('s3')
-try:
-    response = s3_client.generate_presigned_url('get_object',
-                                                Params={'Bucket': 'sjsu-cmpe172-scry',
-                                                        'Key': 'test.png'},
-                                                ExpiresIn=7200)
-    print(response)
-except ClientError as e:
-    logging.error(e)
-    print(e)
+
 #s3.upload_fileobj(img_data, 'sjsu-cmpe172-scry', 'test.png')
 #pyplot.show()
 

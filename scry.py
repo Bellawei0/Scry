@@ -1,4 +1,6 @@
-from models import User, Tweet, InvalidToken,getUser, getUsers, addUser, removeUser, getTweets, getUserTweets, addTweet, delTweet, getRequest, Request, Data, addData, getData, delData, addRequest, delRequest, getUserRequest
+from models import User, Tweet, InvalidToken, getUser, getUsers, addUser, removeUser, getTweets, getUserTweets, \
+    addTweet, delTweet, Request, Data, addData, getData, delData, addRequest, delRequest, getUserRequest, \
+    getDataset
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, jsonify
 import re
@@ -6,7 +8,13 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity, \
     jwt_refresh_token_required, create_refresh_token, get_raw_jwt
 from models import db
-
+import io
+import boto3
+from boto3.dynamodb.conditions import Key
+import pandas
+import numpy
+from matplotlib import pyplot
+from statsmodels.tsa.statespace.sarimax import SARIMAX
 
 app = Flask(__name__)
 app.config[
@@ -19,6 +27,10 @@ db.app = app
 db.init_app(app)
 jwt = JWTManager(app)
 CORS(app)
+
+
+def mape(actual, predicted):
+    return numpy.mean(numpy.abs((actual - predicted) / actual)) * 100
 
 
 @jwt.token_in_blacklist_loader
@@ -76,11 +88,112 @@ def register():
 def forecast():
     print("HELL0")
     uid = get_jwt_identity()
-    print("uid:")
-    print(uid)
-    req = getRequest()
-    print(req)
-    return jsonify({"success": True})
+    req = getUserRequest(uid)
+    did = req['DatasetID']
+    dataset = getDataset(did)
+    key = dataset["S3Key"]
+    s3_client = boto3.client('s3')
+    response = s3_client.get_object(Bucket="sjsu-cmpe172-scry", Key=key)
+    file = response["Body"].read()
+    data = pandas.read_csv(io.BytesIO(file), usecols=[0])
+
+    forecast_length = req['length']
+    data.columns = ["Views"]
+    data = data['Views']
+
+    # Split into training and test sets
+    train_size = int(len(data) * 0.94)
+    test_size = len(data) - train_size
+    train, test = data[0:train_size], data[train_size:len(data)]
+
+    # Initialize empty arrays to store the predictions errors
+    errors = []
+    predictions = []
+    # Train the model and make predictions
+    for i in range(len(test) - forecast_length + 1):
+        print(i)
+        # Configure the model - SARIMA(1,0,1)x(1,1,1)7
+        model = SARIMAX(train, order=(1, 0, 1), seasonal_order=(1, 1, 1, 7), enforce_stationarity=False,
+                        enforce_invertibility=False, trend='n')
+        # Train the model
+        model_fit = model.fit(disp=False, maxiter=100)
+
+        # Make 1 prediction of the specified forecast length
+        forecast = model_fit.predict(start=len(train), end=len(train) + (forecast_length - 1), dynamic=True)
+
+        # Print error and add it to out array of errors
+        error = mape(forecast, test[i:i + forecast_length])
+        print(error)
+        errors.append(error)
+        # Add the forecast to array of forecasts
+        predictions.append(list(forecast))
+        # Add the period we just predicted to the training set for the next period
+        new_train = test[i:i + 1]
+        train = numpy.append(train, new_train)
+
+    # Print the average error
+    print("Average Error:", sum(errors) / len(errors))
+
+    testy = []
+    for index, value in test.items():
+        testy.append(value)
+
+    # get predictions in a plottable form
+    predictions = pandas.DataFrame(predictions).values
+
+    pp = []
+    for i in range(len(predictions[0]) - 1):
+        pp.append(predictions[0][i])
+    for i in range(len(predictions)):
+        pp.append(predictions[i][-1])
+
+    model = SARIMAX(data, order=(1, 0, 1), seasonal_order=(1, 1, 1, 7), enforce_stationarity=False,
+                    enforce_invertibility=False, trend='n')
+    model_fit = model.fit(disp=False, maxiter=100)
+    derp = model_fit.predict(start=len(data), end=len(data) + (forecast_length - 1), dynamic=True)
+    derp = list(derp)
+    d = []
+
+    for i in range(len(testy) - 1):
+        d.append(numpy.nan)
+
+    d.append(testy[-1])
+
+    for i in range(len(derp)):
+        d.append(derp[i])
+
+    d = pandas.DataFrame(d).values
+
+    print("Prediction done! creating plot")
+
+    #pyplot.plot(testy, color='red')
+    #pyplot.plot(pp, color='blue')
+    #pyplot.plot(d, color='green')
+    #img_data = io.BytesIO()
+    #pyplot.savefig(img_data, format='png')
+    #img_data.seek(0)
+    #s3_client.upload_fileobj(img_data, 'sjsu-cmpe172-scry', 'testy1.png')
+    #use string dataset+user.png as a convention
+    response2 = s3_client.generate_presigned_url('get_object',
+                                                 Params={'Bucket': 'sjsu-cmpe172-scry',
+                                                         'Key': 'testy1.png'},
+                                                 ExpiresIn=7200)
+    print(response2)
+    print(isinstance(response2, str))
+    fdict = {}
+    fdict["success"] = response2
+    stringy = "Period "
+    vals = []
+
+    for i in range(len(d)):
+        if not numpy.isnan(numpy.float64(d[i][0])):
+            vals.append(d[i][0])
+    for i in range(1, len(vals)):
+        fdict[stringy + str(i)] = vals[i]
+
+    print(fdict)
+    print(jsonify(fdict))
+    return jsonify(fdict)
 
 
 @app.route("/api/checkiftokenexpire", methods=["POST"])
@@ -122,8 +235,9 @@ def refresh_logout():
         print(e)
         return {"error": e}
 
+
 @app.route("/api/tweets")
-#@jwt_required
+# @jwt_required
 def get_tweets():
     return jsonify(getTweets())
 
@@ -194,6 +308,8 @@ def delete_account():
         return jsonify({"success": True})
     except Exception as e:
         return jsonify({"error": str(e)})
+
+
 ####################################
 
 
