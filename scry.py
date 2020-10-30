@@ -92,7 +92,10 @@ def forecast():
     did = req['DatasetID']
     dataset = getDataset(did)
     key = dataset["S3Key"]
-    s3_client = boto3.client('s3')
+
+    s3_client = boto3.client('s3', aws_access_key_id="AKIAJ5ZHSDMMRPXMYRJQ",
+                             aws_secret_access_key="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")
+
     response = s3_client.get_object(Bucket="sjsu-cmpe172-scry", Key=key)
     file = response["Body"].read()
     data = pandas.read_csv(io.BytesIO(file), usecols=[0])
