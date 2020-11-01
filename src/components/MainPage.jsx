@@ -39,7 +39,7 @@ class MainPage extends React.Component {
                     <button className="w3-button w3-blue w3-large" onClick={() => {
                         document.getElementById("addTweet").style.display = "block"
                     }}>Add tweet</button>
-                    <button className="w3-button w3-blue w3-large" onClick={() => {
+                    <button className="w3-right w3-button w3-red w3-large w3-hover-pale-red w3-round-large" onClick={() => {
                         window.location = "/logout"
                     }}>Sign Out</button>
                 </div>
