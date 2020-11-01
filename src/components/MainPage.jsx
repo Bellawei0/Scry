@@ -3,6 +3,7 @@ import TweetItem from "./TweetItem";
 import Axios from "axios";
 import AddTweet from "./AddTweet"
 import Logout from "./Logout"
+import Popup from "./Popup"
 
 class MainPage extends React.Component {
     state = {tweets: [], currentUser: {username: ""}}
