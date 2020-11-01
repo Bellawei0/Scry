@@ -244,6 +244,19 @@ def refresh_logout():
 def get_tweets():
     return jsonify(getTweets())
 
+@app.route("/api/makeRequest", methods = ["Post"])
+@jwt_required
+def make_request():
+    try:
+        title = request.json["title"]
+        content = request.json["content"]
+        print(title)
+        print(content)
+        return jsonify({"success": "true"})
+    except Exception as e:
+        print(e)
+        return jsonify({"error": "Invalid form"})
+
 
 @app.route("/api/addtweet", methods=["POST"])
 @jwt_required
