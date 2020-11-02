@@ -64,7 +64,7 @@ class Popup extends React.Component {
                 <form className="w3-container" onSubmit={this.submitForm}>
                     {this.state.formErr.length > 0 && <Alert message={this.state.formErr}/>}
                     <div className="w3-section">
-                            <label htmlFor="yoyo">Yoyo</label>
+                            <label htmlFor="yoyo">How many periods do you want to forecast?</label>
                             <input type="text" id="derp" className="w3-input w3-border w3-margin-bottom"/>
                             <small className="w3-text-gray">{this.state.titleErr}</small>
                         <p>
