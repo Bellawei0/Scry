@@ -73,15 +73,6 @@ class TweetItem extends React.Component
 
                 <div dangerouslySetInnerHTML={{__html: this.props.content}}/>
             </div>
-            <footer className="w3-container w3-center w3-large">
-                <button className="w3-button" style={{ marginRight: "2rem" }}>
-                    Like
-                </button>
-                <button className="w3-button" style={{ marginRight: "2rem" }}>
-                    Retweet
-                </button>
-                <button className="w3-button">Reply</button>
-            </footer>
         </div>
     );
 }
