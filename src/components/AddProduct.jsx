@@ -3,7 +3,7 @@ import {Editor} from "@tinymce/tinymce-react/lib/cjs/main/ts";
 import Axios from "axios";
 import Alert from "./Alert";
 
-class AddTweet extends React.Component {
+class AddProduct extends React.Component {
     state = 
     {
         content: "<p>I have to edit this!</p>", titleErr: "", contentErr: "", formErr: ""
@@ -27,7 +27,7 @@ class AddTweet extends React.Component {
         
         if (document.getElementById("title").value.length === 0) 
         {
-            this.setState({titleErr: "Add a title!"})
+            this.setState({titleErr: "Add a Product Name"})
             return;
         }
         
@@ -55,25 +55,25 @@ class AddTweet extends React.Component {
     }
 
     render() {
-        return (<div className="w3-modal w3-animate-opacity" id="addTweet">
+        return (<div className="w3-modal w3-animate-opacity" id="addProduct">
             <div className="w3-modal-content w3-card">
                 <header className="w3-container w3-blue">
                 <span className="w3-button w3-display-topright w3-hover-none w3-hover-text-white" onClick={() => {
-                    document.getElementById("addTweet").style.display = "none"
+                    document.getElementById("addProduct").style.display = "none"
                 }}>X</span>
-                    <h2>Add tweet</h2>
+                    <h2>Add Product</h2>
                 </header>
                 <form className="w3-container" onSubmit={this.submitForm}>
                     {this.state.formErr.length > 0 && <Alert message={this.state.formErr}/>}
                     <div className="w3-section">
                         <p>
-                            <label htmlFor="title">Title</label>
+                            <label htmlFor="title">Product Name</label>
                             <input type="text" id="title" className="w3-input w3-border w3-margin-bottom"/>
                             <small className="w3-text-gray">{this.state.titleErr}</small>
                         </p>
                         <p>
                         <Editor
-                            initialValue="<p>This is the initial content of the editor</p>"
+                            initialValue="<p>Enter a product description</p>"
                             apiKey='4i9uvjc8q9bxptbwdvoo0w1gx2b2ich8v32d2kskukqnxiqh'
                             init={{
                                 height: 300,
@@ -105,4 +105,4 @@ class AddTweet extends React.Component {
     }
 }
 
-export default AddTweet
+export default AddProduct

@@ -43,7 +43,7 @@ class Popup extends React.Component {
         {
             if (res.data.success) 
             {
-                window.location.reload()
+                window.location = "/forecast"
             } 
             else 
             {

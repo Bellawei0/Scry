@@ -1,17 +1,17 @@
 import React from "react";
-import TweetItem from "./TweetItem";
+import DataItem from "./DataItem";
 import Axios from "axios";
-import AddTweet from "./AddTweet"
+import AddProduct from "./AddProduct"
 import Logout from "./Logout"
 import Popup from "./Popup"
 
 class MainPage extends React.Component {
-    state = {tweets: [], currentUser: {username: ""}}
+    state = {products: [], currentUser: {username: ""}}
     componentDidMount() 
     {
-        Axios.get("/api/tweets").then(res => 
+        Axios.get("/api/products").then(res => 
         {
-            this.setState({tweets: res.data.reverse()})
+            this.setState({products: res.data.reverse()})
         });
         setTimeout(() => {
             Axios.get("/api/getcurrentuser", {
@@ -31,27 +31,27 @@ class MainPage extends React.Component {
                 <div
                     className="w3-container w3-jumbo"
                     style={{ margin: "3rem", paddingLeft: "1rem" }}>
-                    <h1>Tweets</h1>
+                    <h1>Products</h1>
                 </div>
                 <div
                     className="w3-container w3-jumbo"
                     style={{ margin: "3rem", paddingLeft: "1rem" }}>
-                    <h1>Tweets</h1>
+                    <h1>Products</h1>
                     <button className="w3-button w3-blue w3-large" onClick={() => {
-                        document.getElementById("addTweet").style.display = "block"
+                        document.getElementById("addProduct").style.display = "block"
                     }}>Add Product</button>
                     <button className="w3-right w3-button w3-red w3-large w3-hover-pale-red w3-round-large" onClick={() => {
                         window.location = "/logout"
                     }}>Sign Out</button>
                 </div>
-                <AddTweet />
+                <AddProduct />
                 <div className="w3-container">
-                    {this.state.tweets.length === 0 ? <p className="w3-xlarge w3-opacity" style={{marginLeft: "2rem"}}>No tweets! Create one</p> : this.state.tweets.map((item, index) => {
+                    {this.state.products.length === 0 ? <p className="w3-xlarge w3-opacity" style={{marginLeft: "2rem"}}>No Products, Create one</p> : this.state.products.map((item, index) => {
                         return (
-                            <TweetItem
+                            <DataItem
                                 id={item.id}
-                                title={item.title}
-                                content={item.content}
+                                title={item.ProductName}
+                                content={item.Description}
                                 author={item.user.username}
                                 isOwner={this.state.currentUser.username === item.user.username}
                                 key={index}
