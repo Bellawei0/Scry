@@ -15,6 +15,8 @@ import pandas
 import numpy
 from matplotlib import pyplot
 from statsmodels.tsa.statespace.sarimax import SARIMAX
+import matplotlib
+matplotlib.use("Agg")
 
 app = Flask(__name__)
 app.config[
@@ -86,7 +88,6 @@ def register():
 @app.route("/api/forecast")
 @jwt_required
 def forecast():
-    print("HELL0")
     uid = get_jwt_identity()
     req = getUserRequest(uid)
     did = req['DatasetID']
@@ -99,6 +100,10 @@ def forecast():
     response = s3_client.get_object(Bucket="sjsu-cmpe172-scry", Key=key)
     file = response["Body"].read()
     data = pandas.read_csv(io.BytesIO(file), usecols=[0])
+
+    username = getUser(uid)["username"]
+    productname = getDataset(did)["ProductName"]
+    graphkey = username + productname + ".png"
 
     forecast_length = req['length']
     data.columns = ["Views"]
@@ -169,20 +174,19 @@ def forecast():
 
     print("Prediction done! creating plot")
 
-    #pyplot.plot(testy, color='red')
-    #pyplot.plot(pp, color='blue')
-    #pyplot.plot(d, color='green')
-    #img_data = io.BytesIO()
-    #pyplot.savefig(img_data, format='png')
-    #img_data.seek(0)
-    #s3_client.upload_fileobj(img_data, 'sjsu-cmpe172-scry', 'testy1.png')
+    pyplot.plot(testy, color='red')
+    pyplot.plot(pp, color='blue')
+    pyplot.plot(d, color='green')
+    img_data = io.BytesIO()
+    pyplot.savefig(img_data, format='png')
+    img_data.seek(0)
+    s3_client.upload_fileobj(img_data, 'sjsu-cmpe172-scry', graphkey)
     #use string dataset+user.png as a convention
     response2 = s3_client.generate_presigned_url('get_object',
                                                  Params={'Bucket': 'sjsu-cmpe172-scry',
-                                                         'Key': 'testy1.png'},
+                                                         'Key': graphkey},
                                                  ExpiresIn=7200)
-    print(response2)
-    print(isinstance(response2, str))
+
     fdict = {}
     fdict["success"] = response2
     stringy = "Period "
@@ -194,8 +198,6 @@ def forecast():
     for i in range(1, len(vals)):
         fdict[stringy + str(i)] = vals[i]
 
-    print(fdict)
-    print(jsonify(fdict))
     return jsonify(fdict)
 
 
@@ -239,19 +241,22 @@ def refresh_logout():
         return {"error": e}
 
 
-@app.route("/api/tweets")
+@app.route("/api/products")
 # @jwt_required
-def get_tweets():
-    return jsonify(getTweets())
+def get_products():
+    return jsonify(getData())
 
 @app.route("/api/makeRequest", methods = ["Post"])
 @jwt_required
 def make_request():
     try:
-        title = request.json["title"]
-        content = request.json["content"]
-        print(title)
-        print(content)
+        did = request.json["title"]
+        length = request.json["content"]
+        if not (did and length):
+            return jsonify({"error": "All fields are mandatory"})
+        uid = get_jwt_identity()
+        addRequest(uid, did, length)
+        print(getUserRequest(uid))
         return jsonify({"success": "true"})
     except Exception as e:
         print(e)
@@ -275,12 +280,12 @@ def add_tweet():
         return jsonify({"error": "Invalid form"})
 
 
-@app.route("/api/deletetweet/<tid>", methods=["DELETE"])
+@app.route("/api/deleteproduct/<pid>", methods=["DELETE"])
 @jwt_required
-def delete_tweet(tid):
+def delete_product(pid):
     try:
-        print(tid)
-        delTweet(tid)
+        print(pid)
+        delData(pid)
         return jsonify({"success": "true"})
     except:
         return jsonify({"error": "Invalid form"})

@@ -165,11 +165,10 @@
         <item itemvalue="Python.sarima" />
         <item itemvalue="Python.my_sql" />
         <item itemvalue="Python.test" />
-        <item itemvalue="JavaScript Debug.index.html" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -248,20 +247,13 @@
       <screen x="0" y="23" width="1280" height="709" />
     </state>
     <state x="76" y="23" width="997" height="709" key="SettingsEditor/0.23.1280.709@0.23.1280.709" timestamp="1602989505381" />
-    <state x="294" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1601688466740">
+    <state x="294" y="241" key="com.intellij.ide.util.TipDialog" timestamp="1604795366723">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
-    <state x="294" y="241" key="com.intellij.ide.util.TipDialog/0.23.1280.709@0.23.1280.709" timestamp="1601688466740" />
+    <state x="294" y="241" key="com.intellij.ide.util.TipDialog/0.23.1280.709@0.23.1280.709" timestamp="1604795366723" />
     <state x="305" y="56" width="670" height="676" key="search.everywhere.popup" timestamp="1603916404675">
       <screen x="0" y="23" width="1280" height="709" />
     </state>
     <state x="305" y="56" width="670" height="676" key="search.everywhere.popup/0.23.1280.709@0.23.1280.709" timestamp="1603916404675" />
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/scry$test.coverage" NAME="test Coverage Results" MODIFIED="1601789571622" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Derp$scry.coverage" NAME="scry Coverage Results" MODIFIED="1604192091364" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/scry$sarima.coverage" NAME="sarima Coverage Results" MODIFIED="1604000439082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/scry$scry.coverage" NAME="scry Coverage Results" MODIFIED="1604003981145" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/scry$my_sql.coverage" NAME="my_sql Coverage Results" MODIFIED="1602709556146" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
