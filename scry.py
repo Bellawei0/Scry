@@ -297,6 +297,20 @@ def get_current_user():
     uid = get_jwt_identity()
     return jsonify(getUser(uid))
 
+@app.route("/api/addproduct", methods=["POST"])
+@jwt_required
+def add_product():
+    try:
+        f = request.files['image']
+        dd = request.form["title"]
+        ff = request.form['content']
+        p = pandas.read_csv(f)
+        print(get_jwt_identity())
+        return jsonify({"success": "true"})
+    except Exception as e:
+        print(e)
+        return jsonify({"error": "Invalid form"})
+
 
 @app.route("/api/changepassword", methods=["POST"])
 @jwt_required
