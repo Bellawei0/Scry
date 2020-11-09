@@ -1,7 +1,8 @@
 // src/components/Navbar.jsx
 import React from "react";
 
-function Navbar() {
+function Navbar() 
+{
     return (
         <div className="w3-bar w3-black">
             <a className="w3-bar-item w3-button" href="/">

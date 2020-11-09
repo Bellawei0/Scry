@@ -1,4 +1,3 @@
-// src/components/App.jsx
 import React from "react";
 import Home from "./Home";
 import Navbar from "./Navbar";
@@ -11,7 +10,8 @@ import Logout from "./Logout"
 import NotFound from "./NotFound"
 import Forecast from "./Forecast"
 
-function App() {
+function App() 
+{
     let [login, setLogin] = React.useState(false);
 
     check().then(r => setLogin(r))
@@ -29,7 +29,6 @@ function App() {
                     <Route path="/logout" exact component={Logout}/>
                     <Route path="/forecast" exact component={Forecast}/>
                     <Route component={NotFound} />
-
                 </Switch>
             </Router>
         </React.Fragment>

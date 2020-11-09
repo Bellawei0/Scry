@@ -27,7 +27,8 @@ class Login extends Component {
         })
     };
 
-    render() {
+    render() 
+    {
         return (
             <div className="grandParentContaniner">
                 <div className="parentContainer">
@@ -35,7 +36,7 @@ class Login extends Component {
                         <h1 className="w3-center">Welcome to Scry</h1>
 						<div className="w3-card-4" style={{ margin: "2rem" }}>
 							<div className="w3-container w3-blue w3-center w3-xlarge">
-							Login
+								Login
 							</div>
 							<div className="w3-container">
 							<p>
@@ -71,11 +72,7 @@ class Login extends Component {
 							</div>
 						</div>
                     </form>
-                    {this.state.err.length > 0 && (
-                        <Alert
-                            message={`Check your form and try again! (${this.state.err})`}
-                        />
-                    )}
+                    {this.state.err.length > 0 && (<Alert message={`Check your form and try again! (${this.state.err})`}/>)}
                 </div>
             </div>
         );

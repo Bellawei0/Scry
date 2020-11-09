@@ -3,10 +3,15 @@ import {Editor} from "@tinymce/tinymce-react/lib/cjs/main/ts";
 import Axios from "axios";
 import Alert from "./Alert";
 
-class AddProduct extends React.Component {
+class AddProduct extends React.Component 
+{
     state = 
     {
-        content: "<p>I have to edit this!</p>", titleErr: "", contentErr: "", formErr: ""
+
+        content: "<p>I have to edit this!</p>", 
+        titleErr: "", 
+        contentErr: "", 
+        formErr: ""
     }
 
     handleEditorChange = (content, editor) => 
@@ -15,13 +20,14 @@ class AddProduct extends React.Component {
         this.setState({content})
     }
 
+
     submitForm = (e) => 
     {
         e.preventDefault()
-        
+
         if (this.state.content.length === 0) 
         {
-            this.setState({contentErr: "Add some data to the content!"})
+            this.setState({contentErr: "Add a Description"})
             return;
         }
         
@@ -31,17 +37,20 @@ class AddProduct extends React.Component {
             return;
         }
         
-        Axios.post("/api/addtweet", 
-        {
-            title: document.getElementById("title").value,
-            content: this.state.content
-        }, 
+        var formData = new FormData();
+        var imagefile = document.querySelector('#file');
+        formData.append("image", imagefile.files[0]);
+        formData.append("title", document.getElementById("title").value);
+        formData.append("content", this.state.content);
+        Axios.post('/api/addproduct', formData, 
         {
             headers: 
             {
-                Authorization: "Bearer " + localStorage.getItem("token")
+                Authorization: "Bearer " + localStorage.getItem("token"),
+                'Content-Type': 'multipart/form-data'
             }
-        }).then(res => 
+        })
+        .then(res => 
         {
             if (res.data.success) 
             {
@@ -54,7 +63,8 @@ class AddProduct extends React.Component {
         })
     }
 
-    render() {
+    render() 
+    {
         return (<div className="w3-modal w3-animate-opacity" id="addProduct">
             <div className="w3-modal-content w3-card">
                 <header className="w3-container w3-blue">
@@ -63,7 +73,8 @@ class AddProduct extends React.Component {
                 }}>X</span>
                     <h2>Add Product</h2>
                 </header>
-                <form className="w3-container" onSubmit={this.submitForm}>
+                <form className="w3-container" id = "myform" onSubmit={this.submitForm}>
+                <input type="file" id="file" name="file"/>
                     {this.state.formErr.length > 0 && <Alert message={this.state.formErr}/>}
                     <div className="w3-section">
                         <p>
@@ -101,8 +112,8 @@ class AddProduct extends React.Component {
                     </div>
                 </form>
             </div>
-        </div>)
-    }
+        </div>
+    )}
 }
 
 export default AddProduct

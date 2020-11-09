@@ -1,6 +1,7 @@
 import React from "react";
 
-function Alert(props) {
+function Alert(props) 
+{
     return (
         <div
             className="w3-pale-red w3-text-red w3-border w3-border-red w3-round-large"
