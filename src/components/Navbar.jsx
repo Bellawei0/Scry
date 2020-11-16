@@ -4,7 +4,7 @@ import React from "react";
 function Navbar() 
 {
 	let x = localStorage.getItem("token")
-	let a = {name: x ? "Settings" : "Login", link: x ? "/settings" : "/login"}
+	let a = {name: x ? "Home" : "Login", link: x ? "/" : "/login"}
 	let b = {name: x ? "Logout" : "Register", link: x ? "/logout" : "/register"}
     return (
         <div className="w3-bar w3-black">
