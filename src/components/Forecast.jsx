@@ -23,8 +23,8 @@ class Forecast extends React.Component {
         }).then(res =>
     	{
     		this.setState({graphURL: (res.data.success)})
-    		this.setState({responsey: (res.data)})
-            this.setState({isLoading: false})
+            delete res.data.success;
+    		this.setState({responsey: (res.data), isLoading: false})
     	})
     }
 

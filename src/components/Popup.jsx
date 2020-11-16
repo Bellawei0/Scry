@@ -59,7 +59,7 @@ class Popup extends React.Component {
                 <span className="w3-button w3-display-topright w3-hover-none w3-hover-text-white" onClick={() => {
                     document.getElementById("popup").style.display = "none"
                 }}>X</span>
-                    <h2>{this.props.id}</h2>
+                    <h2>Forecast Length</h2>
                 </header>
                 <form className="w3-container" onSubmit={this.submitForm}>
                     {this.state.formErr.length > 0 && <Alert message={this.state.formErr}/>}
@@ -68,7 +68,7 @@ class Popup extends React.Component {
                             <input type="text" id="derp" className="w3-input w3-border w3-margin-bottom"/>
                             <small className="w3-text-gray">{this.state.titleErr}</small>
                         <p>
-                            <button type="submit" className="w3-button w3-blue">{this.props.id}</button>
+                            <button type="submit" className="w3-button w3-blue">Get Forecast</button>
                         </p>
                     </div>
                 </form>

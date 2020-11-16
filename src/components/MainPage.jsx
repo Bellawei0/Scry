@@ -36,7 +36,6 @@ class MainPage extends React.Component {
                 <div
                     className="w3-container w3-jumbo"
                     style={{ margin: "3rem", paddingLeft: "1rem" }}>
-                    <h1>Products</h1>
                     <button className="w3-button w3-blue w3-large" onClick={() => {
                         document.getElementById("addProduct").style.display = "block"
                     }}>Add Product</button>
