@@ -150,10 +150,10 @@ def forecast():
     predictions = pandas.DataFrame(predictions).values
 
     pp = []
-    for i in range(len(predictions[0]) - 1):
-        pp.append(predictions[0][i])
-    for i in range(len(predictions)):
-        pp.append(predictions[i][-1])
+    for i in range(len(predictions) - 1):
+        pp.append(predictions[i][0])
+    for i in range(len(predictions[0])):
+        pp.append(predictions[-1][i])
 
     model = SARIMAX(data, order=(1, 0, 1), seasonal_order=(1, 1, 1, 7), enforce_stationarity=False,
                     enforce_invertibility=False, trend='n')
@@ -189,6 +189,7 @@ def forecast():
 
     fdict = {}
     fdict["success"] = response2
+    fdict["Average Percentage Error"] = round(sum(errors) / len(errors), 2)
     stringy = "Period "
     vals = []
 
@@ -196,7 +197,7 @@ def forecast():
         if not numpy.isnan(numpy.float64(d[i][0])):
             vals.append(d[i][0])
     for i in range(1, len(vals)):
-        fdict[stringy + str(i)] = vals[i]
+        fdict[stringy + str(i) + " forecast"] = int(vals[i])
 
     return jsonify(fdict)
 
@@ -305,7 +306,23 @@ def add_product():
         dd = request.form["title"]
         ff = request.form['content']
         p = pandas.read_csv(f)
-        print(get_jwt_identity())
+        print(p)
+        uid = get_jwt_identity()
+        current_user = getUser(uid)
+        un = current_user['username']
+        key = un + dd + ".txt"
+
+
+
+        s3_client = boto3.client('s3', aws_access_key_id="AKIAJ5ZHSDMMRPXMYRJQ",
+                                 aws_secret_access_key="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")
+        csv_buf = io.StringIO()
+        p.to_csv(csv_buf, index=False)
+        csv_buf.seek(0)
+        s3_client.put_object(Bucket='sjsu-cmpe172-scry', Body=csv_buf.getvalue(), Key=key)
+
+        #s3_client.upload_fileobj(f, 'sjsu-cmpe172-scry', key)
+        addData(dd, ff, key, uid)
         return jsonify({"success": "true"})
     except Exception as e:
         print(e)
