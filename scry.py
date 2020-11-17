@@ -1,5 +1,5 @@
-from models import User, Tweet, InvalidToken, getUser, getUsers, addUser, removeUser, getTweets, getUserTweets, \
-    addTweet, delTweet, Request, Data, addData, getData, delData, addRequest, delRequest, getUserRequest, \
+from models import User, InvalidToken, getUser, getUsers, addUser, removeUser, \
+    Request, Data, addData, getData, delData, addRequest, delRequest, getUserRequest, \
     getDataset
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, jsonify
@@ -174,9 +174,10 @@ def forecast():
 
     print("Prediction done! creating plot")
 
-    pyplot.plot(testy, color='red')
-    pyplot.plot(pp, color='blue')
-    pyplot.plot(d, color='green')
+    pyplot.plot(testy, color='red', label='Actual History')
+    pyplot.plot(pp, color='blue', label='Validation')
+    pyplot.plot(d, color='green', label="Forecast")
+    pyplot.legend(loc="upper left")
     img_data = io.BytesIO()
     pyplot.savefig(img_data, format='png')
     img_data.seek(0)
@@ -247,6 +248,7 @@ def refresh_logout():
 def get_products():
     return jsonify(getData())
 
+
 @app.route("/api/makeRequest", methods = ["Post"])
 @jwt_required
 def make_request():
@@ -258,23 +260,6 @@ def make_request():
         uid = get_jwt_identity()
         addRequest(uid, did, length)
         print(getUserRequest(uid))
-        return jsonify({"success": "true"})
-    except Exception as e:
-        print(e)
-        return jsonify({"error": "Invalid form"})
-
-
-@app.route("/api/addtweet", methods=["POST"])
-@jwt_required
-def add_tweet():
-    # db.create_all()
-    try:
-        title = request.json["title"]
-        content = request.json["content"]
-        if not (title and content):
-            return jsonify({"error": "All fields are mandatory"})
-        uid = get_jwt_identity()
-        addTweet(title, content, uid)
         return jsonify({"success": "true"})
     except Exception as e:
         print(e)
@@ -329,33 +314,15 @@ def add_product():
         return jsonify({"error": "Invalid form"})
 
 
-@app.route("/api/changepassword", methods=["POST"])
-@jwt_required
-def change_password():
-    try:
-        user = User.query.get(get_jwt_identity())
-        if not (request.json["password"] and request.json["npassword"]):
-            return jsonify({"error": "Invalid form"})
-        if not user.pwd == request.json["password"]:
-            return jsonify({"error": "Wrong password"})
-        user.pwd = request.json["npassword"]
-        db.session.add(user)
-        db.session.commit()
-        return jsonify({"success": True})
-    except Exception as e:
-        print(e)
-        return jsonify({"error": "Invalid form"})
-
-
 @app.route("/api/deleteaccount", methods=["DELETE"])
 @jwt_required
 def delete_account():
     try:
         user = User.query.get(get_jwt_identity())
-        tweets = Tweet.query.all()
+        tweets = Data.query.all()
         for tweet in tweets:
             if tweet.user.username == user.username:
-                delTweet(tweet.id)
+                delData(tweet.id)
         removeUser(user.id)
         return jsonify({"success": True})
     except Exception as e:

@@ -15,19 +15,13 @@ class User(db.Model):
         self.pwd = pwd
 
 
-class Tweet(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    uid = db.Column(db.Integer, db.ForeignKey("user.id"))
-    user = db.relationship('User', foreign_keys=uid)
-    title = db.Column(db.String(256))
-    content = db.Column(db.String(2048))
-
 class Request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uid = db.Column(db.Integer, db.ForeignKey("user.id"))
     user = db.relationship('User', foreign_keys=uid)
     datasetid = db.Column(db.Integer)
     length = db.Column(db.Integer)
+
 
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -83,27 +77,6 @@ def getData():
     datasets = Data.query.all()
     return[{"id": i.id, "uid": i.uid, "user": getUser(i.uid), "ProductName": i.productName, "Description": i.description, "S3Key":i.s3key} for i in datasets]
 
-def getTweets():
-    tweets = Tweet.query.all()
-    return [{"id": i.id, "title": i.title, "content": i.content, "user": getUser(i.uid)} for i in tweets]
-
-
-def getUserTweets(uid):
-    tweets = Tweet.query.all()
-    return [{"id": item.id, "userid": item.user_id, "title": item.title, "content": item.content} for item in
-            filter(lambda i: i.user_id == uid, tweets)]
-
-
-def addTweet(title, content, uid):
-    try:
-        user = list(filter(lambda i: i.id == uid, User.query.all()))[0]
-        twt = Tweet(title=title, content=content, user=user)
-        db.session.add(twt)
-        db.session.commit()
-        return True
-    except Exception as e:
-        print(e)
-        return False
 
 def addData(productName, description, s3key, uid):
     try:
@@ -115,6 +88,7 @@ def addData(productName, description, s3key, uid):
     except Exception as e:
         print(e)
         return False
+
 
 def addRequest(uid, did, length):
     try:
@@ -128,18 +102,6 @@ def addRequest(uid, did, length):
         return False
 
 
-def delTweet(tid):
-    try:
-        tweet = Tweet.query.get(tid)
-        print("del tweet")
-        db.session.delete(tweet)
-        db.session.commit()
-        print("comitted")
-        return True
-    except Exception as e:
-        print(e)
-        return False
-
 def delData(did):
     try:
         data = Data.query.get(did)
@@ -149,6 +111,7 @@ def delData(did):
     except Exception as e:
         print(e)
         return False
+
 
 def getDataset(did):
     data = Data.query.get(did)
