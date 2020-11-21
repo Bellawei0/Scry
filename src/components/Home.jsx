@@ -1,7 +1,7 @@
 // src/components/Home.jsx
 import React from "react";
 import "./app.css";
-import team1 from "./assets/img/team1.png";
+
 
 function Home() {
     return (
