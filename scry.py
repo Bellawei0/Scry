@@ -1,5 +1,5 @@
 from models import User, InvalidToken, getUser, getUsers, addUser, removeUser, \
-    Request, Data, addData, getData, delData, addRequest, delRequest, getUserRequest, \
+    Data, addData, getData, delData, \
     getDataset
 from flask_sqlalchemy import SQLAlchemy
 from flask import Flask, request, jsonify
@@ -13,6 +13,7 @@ import boto3
 from boto3.dynamodb.conditions import Key
 import pandas
 import numpy
+import pymysql
 from matplotlib import pyplot
 from statsmodels.tsa.statespace.sarimax import SARIMAX
 import matplotlib
@@ -88,9 +89,9 @@ def register():
 @app.route("/api/forecast")
 @jwt_required
 def forecast():
+    did = int(request.args['id'])
+    forecast_length = int(request.args['length'])
     uid = get_jwt_identity()
-    req = getUserRequest(uid)
-    did = req['DatasetID']
     dataset = getDataset(did)
     key = dataset["S3Key"]
 
@@ -105,7 +106,6 @@ def forecast():
     productname = getDataset(did)["ProductName"]
     graphkey = username + productname + ".png"
 
-    forecast_length = req['length']
     data.columns = ["Views"]
     data = data['Views']
 
@@ -187,7 +187,7 @@ def forecast():
                                                  Params={'Bucket': 'sjsu-cmpe172-scry',
                                                          'Key': graphkey},
                                                  ExpiresIn=7200)
-
+    pyplot.clf()
     fdict = {}
     fdict["success"] = response2
     fdict["Average Percentage Error"] = round(sum(errors) / len(errors), 2)
@@ -249,23 +249,6 @@ def get_products():
     return jsonify(getData())
 
 
-@app.route("/api/makeRequest", methods = ["Post"])
-@jwt_required
-def make_request():
-    try:
-        did = request.json["title"]
-        length = request.json["content"]
-        if not (did and length):
-            return jsonify({"error": "All fields are mandatory"})
-        uid = get_jwt_identity()
-        addRequest(uid, did, length)
-        print(getUserRequest(uid))
-        return jsonify({"success": "true"})
-    except Exception as e:
-        print(e)
-        return jsonify({"error": "Invalid form"})
-
-
 @app.route("/api/deleteproduct/<pid>", methods=["DELETE"])
 @jwt_required
 def delete_product(pid):
@@ -283,6 +266,7 @@ def get_current_user():
     uid = get_jwt_identity()
     return jsonify(getUser(uid))
 
+
 @app.route("/api/addproduct", methods=["POST"])
 @jwt_required
 def add_product():
@@ -296,8 +280,6 @@ def add_product():
         current_user = getUser(uid)
         un = current_user['username']
         key = un + dd + ".txt"
-
-
 
         s3_client = boto3.client('s3', aws_access_key_id="AKIAJ5ZHSDMMRPXMYRJQ",
                                  aws_secret_access_key="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")

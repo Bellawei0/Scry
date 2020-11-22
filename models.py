@@ -15,14 +15,6 @@ class User(db.Model):
         self.pwd = pwd
 
 
-class Request(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    uid = db.Column(db.Integer, db.ForeignKey("user.id"))
-    user = db.relationship('User', foreign_keys=uid)
-    datasetid = db.Column(db.Integer)
-    length = db.Column(db.Integer)
-
-
 class Data(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     uid = db.Column(db.Integer, db.ForeignKey("user.id"))
@@ -67,12 +59,6 @@ def removeUser(uid):
         return False
 
 
-def getUserRequest(uid):
-    requests = Request.query.filter_by(uid= uid).order_by(Request.id.desc()).all()
-    request = list(requests)[0]
-    return {"id": request.id, "uid": request.uid, "user": getUser(request.uid), "DatasetID":request.datasetid, "length":request.length}
-
-
 def getData():
     datasets = Data.query.all()
     return[{"id": i.id, "uid": i.uid, "user": getUser(i.uid), "ProductName": i.productName, "Description": i.description, "S3Key":i.s3key} for i in datasets]
@@ -83,18 +69,6 @@ def addData(productName, description, s3key, uid):
         user = list(filter(lambda i: i.id == uid, User.query.all()))[0]
         dataset = Data(user=user, productName=productName, description=description, s3key=s3key,)
         db.session.add(dataset)
-        db.session.commit()
-        return True
-    except Exception as e:
-        print(e)
-        return False
-
-
-def addRequest(uid, did, length):
-    try:
-        user = list(filter(lambda i: i.id == uid, User.query.all()))[0]
-        request = Request(user=user, datasetid=did, length=length)
-        db.session.add(request)
         db.session.commit()
         return True
     except Exception as e:
@@ -116,19 +90,6 @@ def delData(did):
 def getDataset(did):
     data = Data.query.get(did)
     return{"id": data.id, "uid": data.uid, "user": getUser(data.uid), "ProductName": data.productName, "Description": data.description, "S3Key":data.s3key}
-
-
-def delRequest(rid):
-    try:
-        request = Request.query.get(rid)
-        db.session.delete(request)
-        db.session.commit()
-        print("Successfully deleted request")
-        return True
-    except Exception as e:
-        print("delete request failed")
-        print(e)
-        return False
 
 
 class InvalidToken(db.Model):
