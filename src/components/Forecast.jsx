@@ -2,24 +2,32 @@ import React from "react";
 import Axios from "axios";
 import { JsonToTable } from "react-json-to-table";
 
-class Forecast extends React.Component {
+class Forecast extends React.Component 
+{
   state = {
     graphURL: "hello",
     isLoading: true,
     responsey: "",
   };
 
-  componentDidMount() {
-    Axios.get("/api/forecast", {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    }).then((res) => {
-      this.setState({ graphURL: res.data.success });
-      delete res.data.success;
-      this.setState({ responsey: res.data, isLoading: false });
-    });
-  }
+    componentDidMount()
+    {
+        const params = new URLSearchParams(window.location.search)
+        const foo = params.get('id')
+        const bar = params.get('length')
+      Axios.get("/api/forecast?id=" + foo + "&length=" + bar,
+        {
+            headers:
+            {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            }
+        }).then(res =>
+      {
+        this.setState({graphURL: (res.data.success)})
+            delete res.data.success;
+        this.setState({responsey: (res.data), isLoading: false})
+      })
+    }
 
   render() {
     const { graphURL, isLoading } = this.state;

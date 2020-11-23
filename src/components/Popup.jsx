@@ -29,27 +29,9 @@ class Popup extends React.Component {
             return;
         }
         
-        Axios.post("/api/makeRequest", 
-        {
-            title: this.props.id,
-            content: document.getElementById("derp").value
-        }, 
-        {
-            headers: 
-            {
-                Authorization: "Bearer " + localStorage.getItem("token")
-            }
-        }).then(res => 
-        {
-            if (res.data.success) 
-            {
-                window.location = "/forecast"
-            } 
-            else 
-            {
-                this.setState({formErr: res.data.error })
-            }
-        })
+        var v = this.props.id
+        var w = document.getElementById("derp").value
+        window.location = "/forecast?id=" + v +"&length=" + w
     }
 
     render() {
