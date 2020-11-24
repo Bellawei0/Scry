@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Logout from "./Logout"
 import NotFound from "./NotFound"
 import Forecast from "./Forecast"
+import Derp from "./Derp"
 
 function App() 
 {
@@ -28,6 +29,7 @@ function App()
                     <Route path="/register" exact component={Register}/>
                     <Route path="/logout" exact component={Logout}/>
                     <Route path="/forecast" exact component={Forecast}/>
+                    <Route path="/request" exact component={Derp}/>
                     <Route component={NotFound} />
                 </Switch>
             </Router>

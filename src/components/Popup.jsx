@@ -39,9 +39,9 @@ class Popup extends React.Component {
             <div className="w3-modal-content w3-card">
                 <header className="w3-container w3-blue">
                 <span className="w3-button w3-display-topright w3-hover-none w3-hover-text-white" onClick={() => {
-                    document.getElementById("popup").style.display = "none"
+                    document.getElementById("popup").style.display = "block"
                 }}>X</span>
-                    <h2>Forecast Length</h2>
+                    <h2>{this.props.id}</h2>
                 </header>
                 <form className="w3-container" onSubmit={this.submitForm}>
                     {this.state.formErr.length > 0 && <Alert message={this.state.formErr}/>}
