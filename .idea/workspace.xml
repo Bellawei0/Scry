@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3b64b388-a378-4111-b232-dc6ff05d63fd" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="FlaskConsoleOptions" custom-start-script="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))">
+    <envs>
+      <env key="FLASK_APP" value="app" />
+    </envs>
+    <option name="myCustomStartScript" value="import sys&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;from flask.cli import ScriptInfo&#10;locals().update(ScriptInfo(create_app=None).load_app().make_shell_context())&#10;print(&quot;Python %s on %s\nApp: %s [%s]\nInstance: %s&quot; % (sys.version, sys.platform, app.import_name, app.env, app.instance_path))" />
+    <option name="myEnvs">
+      <map>
+        <entry key="FLASK_APP" value="app" />
+      </map>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
+  <component name="JupyterTrust" id="f358dd90-060f-4300-a80d-3b35a877d230" />
+  <component name="ProjectId" id="1iLI1MLf5SiRqm6LdOM6DY7GI78" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+    <option name="showMembers" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.scry">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/scry/templates/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="my_sql" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scry" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_sql.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="sarima" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scry" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/sarima.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scry" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scry" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/scry.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="scry" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.scry" />
+        <item itemvalue="Python.sarima" />
+        <item itemvalue="Python.my_sql" />
+        <item itemvalue="Python.test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3b64b388-a378-4111-b232-dc6ff05d63fd" name="Default Changelist" comment="" />
+      <created>1601680229143</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1601680229143</updated>
+      <workItem from="1601691151887" duration="27781000" />
+      <workItem from="1602634888507" duration="1896000" />
+      <workItem from="1602640902706" duration="7514000" />
+      <workItem from="1602725298406" duration="17570000" />
+      <workItem from="1602896182634" duration="6895000" />
+      <workItem from="1602919896740" duration="674000" />
+      <workItem from="1602982351469" duration="1818000" />
+      <workItem from="1602984553093" duration="193000" />
+      <workItem from="1603151471511" duration="2762000" />
+      <workItem from="1603158419260" duration="7288000" />
+      <workItem from="1603320546238" duration="4167000" />
+      <workItem from="1603499552942" duration="1132000" />
+      <workItem from="1603770021763" duration="8221000" />
+      <workItem from="1603839771563" duration="8161000" />
+      <workItem from="1603866807941" duration="3825000" />
+      <workItem from="1603911408545" duration="2829000" />
+      <workItem from="1603915160851" duration="3797000" />
+      <workItem from="1603997078337" duration="2485000" />
+      <workItem from="1603999950433" duration="1023000" />
+      <workItem from="1604001073275" duration="1550000" />
+      <workItem from="1604192013551" duration="476000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="413" y="261" key="#Notifications" timestamp="1602920634076">
+      <screen x="0" y="23" width="1280" height="709" />
+    </state>
+    <state x="413" y="261" key="#Notifications/0.23.1280.709@0.23.1280.709" timestamp="1602920634076" />
+    <state width="1259" height="223" key="GridCell.Tab.0.bottom" timestamp="1606848683957">
+      <screen x="0" y="23" width="1280" height="706" />
+    </state>
+    <state width="1238" height="174" key="GridCell.Tab.0.bottom/0.0.1280.800@0.0.1280.800" timestamp="1603866156055" />
+    <state width="1259" height="223" key="GridCell.Tab.0.bottom/0.23.1280.706@0.23.1280.706" timestamp="1606848683957" />
+    <state width="1259" height="208" key="GridCell.Tab.0.bottom/0.23.1280.709@0.23.1280.709" timestamp="1606088627714" />
+    <state width="1238" height="142" key="GridCell.Tab.0.bottom/0.23.1280.710@0.23.1280.710" timestamp="1603997075056" />
+    <state width="1425" height="145" key="GridCell.Tab.0.bottom/0.23.1280.715@0.23.1280.715" timestamp="1603499122117" />
+    <state width="1425" height="145" key="GridCell.Tab.0.bottom/0.23.1280.727@0.23.1280.727" timestamp="1603325414994" />
+    <state width="1259" height="223" key="GridCell.Tab.0.center" timestamp="1606848683956">
+      <screen x="0" y="23" width="1280" height="706" />
+    </state>
+    <state width="1238" height="174" key="GridCell.Tab.0.center/0.0.1280.800@0.0.1280.800" timestamp="1603866156054" />
+    <state width="1259" height="223" key="GridCell.Tab.0.center/0.23.1280.706@0.23.1280.706" timestamp="1606848683956" />
+    <state width="1259" height="208" key="GridCell.Tab.0.center/0.23.1280.709@0.23.1280.709" timestamp="1606088627713" />
+    <state width="1238" height="142" key="GridCell.Tab.0.center/0.23.1280.710@0.23.1280.710" timestamp="1603997075055" />
+    <state width="1425" height="145" key="GridCell.Tab.0.center/0.23.1280.715@0.23.1280.715" timestamp="1603499122116" />
+    <state width="1425" height="145" key="GridCell.Tab.0.center/0.23.1280.727@0.23.1280.727" timestamp="1603325414967" />
+    <state width="1259" height="223" key="GridCell.Tab.0.left" timestamp="1606848683955">
+      <screen x="0" y="23" width="1280" height="706" />
+    </state>
+    <state width="1238" height="174" key="GridCell.Tab.0.left/0.0.1280.800@0.0.1280.800" timestamp="1603866156053" />
+    <state width="1259" height="223" key="GridCell.Tab.0.left/0.23.1280.706@0.23.1280.706" timestamp="1606848683955" />
+    <state width="1259" height="208" key="GridCell.Tab.0.left/0.23.1280.709@0.23.1280.709" timestamp="1606088627713" />
+    <state width="1238" height="142" key="GridCell.Tab.0.left/0.23.1280.710@0.23.1280.710" timestamp="1603997075055" />
+    <state width="1425" height="145" key="GridCell.Tab.0.left/0.23.1280.715@0.23.1280.715" timestamp="1603499122115" />
+    <state width="1425" height="145" key="GridCell.Tab.0.left/0.23.1280.727@0.23.1280.727" timestamp="1603325414966" />
+    <state width="1259" height="223" key="GridCell.Tab.0.right" timestamp="1606848683957">
+      <screen x="0" y="23" width="1280" height="706" />
+    </state>
+    <state width="1238" height="174" key="GridCell.Tab.0.right/0.0.1280.800@0.0.1280.800" timestamp="1603866156055" />
+    <state width="1259" height="223" key="GridCell.Tab.0.right/0.23.1280.706@0.23.1280.706" timestamp="1606848683957" />
+    <state width="1259" height="208" key="GridCell.Tab.0.right/0.23.1280.709@0.23.1280.709" timestamp="1606088627714" />
+    <state width="1238" height="142" key="GridCell.Tab.0.right/0.23.1280.710@0.23.1280.710" timestamp="1603997075056" />
+    <state width="1425" height="145" key="GridCell.Tab.0.right/0.23.1280.715@0.23.1280.715" timestamp="1603499122116" />
+    <state width="1425" height="145" key="GridCell.Tab.0.right/0.23.1280.727@0.23.1280.727" timestamp="1603325414994" />
+    <state x="76" y="23" width="997" height="709" key="SettingsEditor" timestamp="1605861078752">
+      <screen x="0" y="23" width="1280" height="709" />
+    </state>
+    <state x="76" y="23" width="997" height="709" key="SettingsEditor/0.23.1280.709@0.23.1280.709" timestamp="1605861078752" />
+    <state x="294" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1606848584406">
+      <screen x="0" y="23" width="1280" height="706" />
+    </state>
+    <state x="294" y="240" key="com.intellij.ide.util.TipDialog/0.23.1280.706@0.23.1280.706" timestamp="1606848584406" />
+    <state x="294" y="241" key="com.intellij.ide.util.TipDialog/0.23.1280.709@0.23.1280.709" timestamp="1606087423464" />
+    <state x="305" y="56" width="670" height="676" key="search.everywhere.popup" timestamp="1603916404675">
+      <screen x="0" y="23" width="1280" height="709" />
+    </state>
+    <state x="305" y="56" width="670" height="676" key="search.everywhere.popup/0.23.1280.709@0.23.1280.709" timestamp="1603916404675" />
+  </component>
+</project>
