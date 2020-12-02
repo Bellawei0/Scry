@@ -241,7 +241,45 @@ alt="AWS client 3"
 7. Click the link in console or manually navigate to 0.0.0.0:5000 in Firefox or Chrome browser
 
 The application should be running, but will have no data yet.
-You will need to register a new user on the register screen
-Adding a product can be done using the files in the test-files folder
+
+8. You will need to register a new user on the register screen
+
+As mentioned previously, if this is the first time running the application you will need to register a user
+
+Posting to the register route will trigger the tables being created the first time you run the application
+
+This command at line 68 will create the tables the first time you attempt to register a user
+<img src="readme_images/init_db.png" raw=true alt="Initialize Database"/>
+
+9. Stop the application with "command + c"
+
+10. Go comment out the command at line 68, you don't want to recreate the tables every time you register
+<img src="readme_images/init_db.png" raw=true alt="Initialize Database"/>
+
+11. Rerun the build.sh script
+
+12. Rerun the run.sh script
+
+13. The application should be totally functional 
+
+
+
+
+Our Diagrams
+
+System Diagram
+<img src="readme_images/system.png" raw=true alt="System Diagram"/>
+
+Database Diagram
+<img src="readme_images/database.png" raw=true alt="Database Diagram"/>
+
+Front-end Class Diagram
+<img src="readme_images/frontend.png" raw=true alt="Front-end Class Diagram"/>
+
+Back-end Class Diagram
+<img src="readme_images/backend.png" raw=true alt="Back-end Class Diagram"/>
+
+Sequence Diagram
+<img src="readme_images/sequence.png" raw=true alt="Sequence Diagram"/>
 
 

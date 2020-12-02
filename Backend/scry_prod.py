@@ -65,7 +65,7 @@ def login():
 
 @app.route("/api/register", methods=["POST"])
 def register():
-    print(getUsers())
+    db.create_all()
     try:
         email = request.json["email"]
         email = email.lower()
