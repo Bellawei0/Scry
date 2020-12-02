@@ -22,6 +22,14 @@ class Data(db.Model):
     productName = db.Column(db.String(256))
     description = db.Column(db.String(2048))
     s3key = db.Column(db.String(256))
+
+
+class Forecast(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    uid = db.Column(db.Integer)
+    did = db.Column(db.Integer)
+    forecastJSON = db.Column(db.String(2048))
+    s3key = db.Column(db.String(256))
 ##########################################################
 
 

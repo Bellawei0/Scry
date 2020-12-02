@@ -19,13 +19,14 @@ from statsmodels.tsa.statespace.sarimax import SARIMAX
 import matplotlib
 matplotlib.use("Agg")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="build", static_url_path="/")
 app.config[
     "SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://admin:Cascade5995$$$@cmpe172.cxubifgi6ctr.us-west-1.rds.amazonaws.com:3306/bank'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["JWT_SECRET_KEY"] = "SJSU/CMPE172/Scry"
 app.config["JWT_BLACKLIST_ENABLED"] = True
 app.config["JWT_BLACKLIST_TOKEN_CHECKS"] = ["access", "refresh"]
+app.config['DEBUG'] = True
 db.app = app
 db.init_app(app)
 jwt = JWTManager(app)
@@ -90,6 +91,7 @@ def register():
 @jwt_required
 def forecast():
     did = int(request.args['id'])
+    print(did)
     forecast_length = int(request.args['length'])
     uid = get_jwt_identity()
     dataset = getDataset(did)
@@ -295,6 +297,15 @@ def add_product():
         print(e)
         return jsonify({"error": "Invalid form"})
 
+@app.route("/<a>")
+def react_routes(a):
+    return app.send_static_file("index.html")
+
+
+@app.route("/")
+def react_index():
+    return app.send_static_file("index.html")
+
 
 @app.route("/api/deleteaccount", methods=["DELETE"])
 @jwt_required
@@ -316,5 +327,5 @@ def delete_account():
 
 # APP###########################
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0')
 ################################
