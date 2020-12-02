@@ -21,7 +21,7 @@ matplotlib.use("Agg")
 
 app = Flask(__name__, static_folder="build", static_url_path="/")
 app.config[
-    "SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://admin:Cascade5995$$$@cmpe172.cxubifgi6ctr.us-west-1.rds.amazonaws.com:3306/bank'
+    "SQLALCHEMY_DATABASE_URI"] = 'mysql+pymysql://username:password@url:port/schema'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config["JWT_SECRET_KEY"] = "SJSU/CMPE172/Scry"
 app.config["JWT_BLACKLIST_ENABLED"] = True
@@ -97,8 +97,8 @@ def forecast():
     dataset = getDataset(did)
     key = dataset["S3Key"]
 
-    s3_client = boto3.client('s3', aws_access_key_id="AKIAJ5ZHSDMMRPXMYRJQ",
-                             aws_secret_access_key="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")
+    s3_client = boto3.client('s3', aws_access_key_id="",
+                             aws_secret_access_key="")
 
     response = s3_client.get_object(Bucket="sjsu-cmpe172-scry", Key=key)
     file = response["Body"].read()
@@ -283,8 +283,8 @@ def add_product():
         un = current_user['username']
         key = un + dd + ".txt"
 
-        s3_client = boto3.client('s3', aws_access_key_id="AKIAJ5ZHSDMMRPXMYRJQ",
-                                 aws_secret_access_key="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")
+        s3_client = boto3.client('s3', aws_access_key_id="",
+                                 aws_secret_access_key="")
         csv_buf = io.StringIO()
         p.to_csv(csv_buf, index=False)
         csv_buf.seek(0)

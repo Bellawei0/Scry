@@ -139,8 +139,6 @@ https://www.youtube.com/watch?v=ltJxAehc2JU&t=0s
 
 Instructions for use
 
-1. Download or pull the project source code from Github
-
 This repository contains all the source code to run the application in a Docker container, or without it.
 
 The Dockerized build has a few lines of code that are different in the back-end.
@@ -157,7 +155,6 @@ We did run both applications together during development, and all the original d
 To productionize the React.js application, we ran the command "npm run build", which creates a build folder with all the static assets generated from our React source code.
 
 We then link the scry_prod.py to this build folder and serve the assets. This is far more efficient that running both applications in a production environment.
-
 
 To avoid publishing our cloud security credentials, we have removed them from the application.
 
@@ -180,13 +177,68 @@ YOU WILL THEN NEED TO GO AND COMMENT OUT THE LINE db.create_all() !!!!!!!!!
 
 This will prevent the tables from being recreated every time you run the application
 
+1. Download or pull the project source code from Github
 
 2. Navigate to the project root folder
-3. Run the build script with the command:
+
+3. Add your own MySQL database connection to the application in line 24 of scry_prod.py
+
+	<img 
+src="readme_images/sql_url.png"
+raw=true
+alt="SQL URI IMAGE"
+/>
+	
+	replace username with your database username
+
+	replace password with your database password
+
+	replace url with the url for your database
+
+	replace port with the port number your database connection uses (probably 3306)
+
+	replace schema with any new schema you create in your database - you want an empty one
+
+4. Add your own AWS credentials at lines 100 - 101 in scry_prod.py. The key values need to be surrounded by quotes.
+	<img 
+src="readme_images/aws_cred.png"
+raw=true
+alt="AWS credentials"
+/>
+
+Repeat this at lines 286 - 287
+	<img 
+src="readme_images/aws_cred2.png"
+raw=true
+alt="AWS credentials 2"
+/>
+
+5. Add your own S3 bucket name at line 103 of scry_prod.py replacing sjsu-cmpe-172 with your own bucket
+	<img 
+src="readme_images/aws_client.png"
+raw=true
+alt="AWS client"
+/>
+
+Lines 186, 189, ans 291 also need to have the same bucket name added in the same way
+	<img 
+src="readme_images/aws_client2.png"
+raw=true
+alt="AWS client 2"
+/>
+	<img 
+src="readme_images/aws_client3.png"
+raw=true
+alt="AWS client 3"
+/>
+
+<img src="readme_images/aws_client4.png" raw=true alt="AWS client4"/>
+
+5. Run the build script with the command:
 ./build.sh
-4. When this has finished building run the run script
+6. When this has finished building run the run script
 ./run.sh
-5. Click the link in console or manually navigate to 0.0.0.0:5000 in Firefox or Chrome browser
+7. Click the link in console or manually navigate to 0.0.0.0:5000 in Firefox or Chrome browser
 
 The application should be running, but will have no data yet.
 You will need to register a new user on the register screen
