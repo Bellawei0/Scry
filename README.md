@@ -1,44 +1,113 @@
+San Jose State University
+Computer Engineering 172
+Fall 2020
+
+Written by:
+	Nathan Hencky
+	Andrew Murillo
+	Bellw Wei
+
+Introduction
+
+This a forecasting application for Enterprise.
+The landing page looks like this. 
+Use the Navigation bar at the top of the window to navigate to Register or Login
+
+<img 
+src="readme_images/landing-page.png"
+raw=true
+alt="Landing Page Image"
+/>
+
+Users can register and log in, and JWT authentication is used
+Logged in users can view any products in the database, but only delete those they have added
+Users can add products from their home screen when logged in.
+
+<REGISTER IMAGE HERE>
+<LOGIN IMAGE HERE>
+<HOME IMAGE HERE>
+
+To add a product, first click the "Add Product" button on the homepage
+
+<ADD PRODUCT IMAGE HERE>
+
+On the popup menu enter a Product Name and Description in the text boxes, then select a .csv or csv formatted .txt file to upload from your device after pressing the browse button
+Press submit on the popup after adding Product Name, Description, and a History file.
+Again, the file should be CSV formatted, and represent some history
+THE QUANTITY TO FORECAST MUST BE IN THE FIRST COLUMN!!!!
+Some sample history files from publicly available Wikipedia Web Traffic history are inlcuded in the test-files folder
+
+Once a product has been successfully added to the database, a forecast can be retrieved for that data
+After successfully adding a product, the product will appear in "card view" on the user's home page
+That product card will have a "Get Forecast" button
+Click the "Get Forecast" button to bring up the forecast menu
+On the forecast menu just enter in an integer number of timesteps in the future you want to predict
+For example, entering the number 7 will give you a forecast for 7 time steps after the last history entry
+If your data is daily like in the test data, it will forecast for the 7 days occuring after the last entry in history
+Press the submit button after entering an integer
+
+<GET FORECAST IMAGE HERE>
+
+
+The request will take about 30 seconds to 1 minute to process.
+The Machine Learning algorithm in the back-end trains on the historical data many times and validates its error during training
+This lets us know the accuracy of our algorithm on when applied to historical data.
+We train on a small section of the data, then make a prediction for the next period the model has not trained on yet, and record the error.
+This is repeated several hundred times, adding more of the history as we go until we have trained on all of the history and recorded all the training errors.
+Our forecast is not guaranteed to have the same accuracy, but this technique provides a good estimation of how accurate our forecasts should be
+
+Once the training has finished, we use the trained model to predict the for the next period of time, with the length specified by the user on the forecast menu.
+
+We graph the actual history, training predictions, and the requested forecast period.
+We also create a chart of the individual forecasted period predictions and the average training error
+These are displayed to the user on the forecast page.
+
+<FORECAST IMAGE HERE>
+
+After viewing their forecast, the user can return to the home page, where they can add more products, get more forecasts for other products, delete products that they have added or log out.
+Because this application is targetted at Enterprises, all users can see all the products and get forecasts, but can only delete a product from the databse that they have added.
+
+
+For more details see this link for a video of the Application running on a public url.
+<LINK HERE>
+
 Instructions for use
 
 1. Download or pull the project source code from Github
 
+This repository contains all the source code to run the application in a Docker container, or without it.
+The Dockerized build needs a few lines of code to be different in the back-end.
+scry_dev.py contains the back-end applciation code for running without Docker
+scry_prod.py is used for the dockerized application
 
-Part 1 - Backend - Flask
-	1. Download and install Python version 3.6
-	2. Create a Python Virtual Environment or download PyCharm Community Edition, it is free and will configure one for you
-	3. PyCharm is the recommended way to complete the configuration, but feel free to setup your own virtual environment if comfortable
-	4. Configure the environment for Python 3.6
-		a.) If using PyCharm, go to the PyCharm tab on the top left of the screen
-		b.) Select Preferences from the Pycharm tab
-		c.) Select Project from the Preferences tab on the right of the screen
-		d.) Select Project Interpreter at the top of the Preferences Menu
-		e.) Browse the drop down menu to find where you installed Python 3.6 and choose it as the interpreter
-		f.) Click the "Apply" button on the bottom
-		g.) Click "OK" button on the bottom
-	5. Upgrade your pip to the latest version with "pip3 install --upgrade pip"
-	5. Install all the dependencies in the virtual environment
-		a.) The dependencies are in the file "requirements.txt" in the Backend folder
-		b.) If using PyCharm, just open up the terminal from inside PyCharm and you will see (scry) before the your name path indicating a virtual environment has already been configured
-		c.) Install the dependencies with "pip3 install -r requirements.txt"
-	6.	Now run the scry.py file
-		a.) "python3 scry.py" if running in a virtual environment from command line
-		b.) Just click the "run" button if using PyCharm
-	7. The Backend Flask application will be running on localhost port 5000
-  
+For the Dockerized build, the Front-end code uses a production optimized static build.
+This means all of our React.JS application code is converted into static assets to be served by the Back-end rather than running 2 applications at the same time. We did run both applications together during development, and all the original development files are inlcuded as well.
+To productionize the React.js application, we ran the command "npm run build", which creates a build folder with all the static assets generated from our React source code.
+We then link the scry_prod.py to this build folder and serve the assets. This is far more efficient that running both applications in a production environment.
 
-Part 2 - Frontend - React.js
-	1. Download and install React.js version 17.0.1
-	2. Use the command line to navigate to the Frontend directory of the source code folder
-	3. Once inside the Frontend directory, run the command "npm install" to install all the dependencies
-	4. Once dependency installation has completed, run the command "npm start", again from inside the Frontend directory
-	5. The React Frontend will be running on localhost port 3000
+To avoid publishing our cloud security credentials, we have removed them from the application.
+You will need to include your own SQL database and S3 bucker to use this application
+There is no database schema script, as the SQLAlchemy package we use takes care of that.
+You can use a link to any database schema.
+The first time you run the application you need to inlclude the command "db.create_all()"
+This will create the tables defined by the Objects in models.py that map to the database
+We have included this db.create_all in the first line in the route "/api/register", so that when you register your first user, the tables are created first.
+After registering this first user, the tables will be created.
+YOU WILL THEN NEED TO GO AND COMMENT OUT THE LINE db.create_all() !!!!!!!!!
+<find line, add image>
 
-Part 3
-	1.) With both Frontend and Backend running, navigate to http:://localhost:3000 if it does not automatically popup in your browser
-	2.) You can register a new user
-	3.) Or feel free to use the following login credentials
-			email: "nhencky@gmail.com"
-			password: "password"
+This will prevent the tables from being recreated every time you run the application
 
+
+2. Navigate to the project root folder
+3. Run the build script with the command:
+./build.sh
+4. When this has finished building run the run script
+./run.sh
+5. Click the link in console or manually navigate to 0.0.0.0:5000 in Firefox or Chrome browser
+
+The application should be running, but will have no data yet.
+You will need to register a new user on the register screen
+Adding a product can be done using the files in the test-files folder
 
 
