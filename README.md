@@ -70,16 +70,25 @@ raw=true
 alt="Add Product Image"
 />
 Again, the file should be CSV formatted, and represent some history
+
 THE QUANTITY TO FORECAST MUST BE IN THE FIRST COLUMN!!!!
+
 Some sample history files from publicly available Wikipedia Web Traffic history are inlcuded in the test-files folder
 
 Once a product has been successfully added to the database, a forecast can be retrieved for that data
+
 After successfully adding a product, the product will appear in "card view" on the user's home page
+
 That product card will have a "Get Forecast" button
+
 Click the "Get Forecast" button to bring up the forecast menu
+
 On the forecast menu just enter in an integer number of timesteps in the future you want to predict
+
 For example, entering the number 7 will give you a forecast for 7 time steps after the last history entry
+
 If your data is daily like in the test data, it will forecast for the 7 days occuring after the last entry in history
+
 Press the submit button after entering an integer
 
 <img 
@@ -90,6 +99,7 @@ alt="Forecast Request Image"
 
 
 The request will take about 30 seconds to 1 minute to process.
+
 Loading Screen will look like this
 
 <img 
@@ -132,23 +142,39 @@ Instructions for use
 1. Download or pull the project source code from Github
 
 This repository contains all the source code to run the application in a Docker container, or without it.
-The Dockerized build needs a few lines of code to be different in the back-end.
+
+The Dockerized build has a few lines of code that are different in the back-end.
+
 scry_dev.py contains the back-end applciation code for running without Docker
+
 scry_prod.py is used for the dockerized application
 
 For the Dockerized build, the Front-end code uses a production optimized static build.
-This means all of our React.JS application code is converted into static assets to be served by the Back-end rather than running 2 applications at the same time. We did run both applications together during development, and all the original development files are inlcuded as well.
+
+This means all of our React.JS application code is converted into static assets to be served by the Back-end rather than running 2 applications at the same time. 
+We did run both applications together during development, and all the original development files are inlcuded as well.
+
 To productionize the React.js application, we ran the command "npm run build", which creates a build folder with all the static assets generated from our React source code.
+
 We then link the scry_prod.py to this build folder and serve the assets. This is far more efficient that running both applications in a production environment.
 
+
 To avoid publishing our cloud security credentials, we have removed them from the application.
+
 You will need to include your own SQL database and S3 bucker to use this application
+
 There is no database schema script, as the SQLAlchemy package we use takes care of that.
+
 You can use a link to any database schema.
+
 The first time you run the application you need to inlclude the command "db.create_all()"
+
 This will create the tables defined by the Objects in models.py that map to the database
+
 We have included this db.create_all in the first line in the route "/api/register", so that when you register your first user, the tables are created first.
+
 After registering this first user, the tables will be created.
+
 YOU WILL THEN NEED TO GO AND COMMENT OUT THE LINE db.create_all() !!!!!!!!!
 <find line, add image>
 
