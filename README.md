@@ -135,7 +135,7 @@ Because this application is targetted at Enterprises, all users can see all the 
 
 
 For more details see this link for a video of the Application running on a public url.
-https://www.youtube.com/watch?v=ltJxAehc2JU&t=34s
+https://www.youtube.com/watch?v=ltJxAehc2JU&t=0s
 
 Instructions for use
 
