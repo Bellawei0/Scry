@@ -1,17 +1,22 @@
 San Jose State University
+
 Computer Engineering 172
 Fall 2020
 
 Written by:
+
 	Nathan Hencky
+
 	Andrew Murillo
-	Bellw Wei
+
+	Bella Wei
+
 
 Introduction
 
 This a forecasting application for Enterprise.
-The landing page looks like this. 
-Use the Navigation bar at the top of the window to navigate to Register or Login
+
+The landing page looks like this.
 
 <img 
 src="readme_images/landing-page.png"
@@ -19,20 +24,51 @@ raw=true
 alt="Landing Page Image"
 />
 
+Use the Navigation bar at the top of the window to navigate to Register or Login
+
+
 Users can register and log in, and JWT authentication is used
+
 Logged in users can view any products in the database, but only delete those they have added
+
 Users can add products from their home screen when logged in.
 
-<REGISTER IMAGE HERE>
-<LOGIN IMAGE HERE>
-<HOME IMAGE HERE>
+REGISTRATION
+<img 
+src="readme_images/register.png"
+raw=true
+alt="Registration Image"
+/>
+
+LOGIN
+<img 
+src="readme_images/login.png"
+raw=true
+alt="Login Image"
+/>
+
+HOME
+<img 
+src="readme_images/home1.png"
+raw=true
+alt="Home Image #1"
+/>
+<img 
+src="readme_images/home2.png"
+raw=true
+alt="Home Image #2"
+/>
 
 To add a product, first click the "Add Product" button on the homepage
 
-<ADD PRODUCT IMAGE HERE>
 
 On the popup menu enter a Product Name and Description in the text boxes, then select a .csv or csv formatted .txt file to upload from your device after pressing the browse button
 Press submit on the popup after adding Product Name, Description, and a History file.
+<img 
+src="readme_images/add_product.png"
+raw=true
+alt="Add Product Image"
+/>
 Again, the file should be CSV formatted, and represent some history
 THE QUANTITY TO FORECAST MUST BE IN THE FIRST COLUMN!!!!
 Some sample history files from publicly available Wikipedia Web Traffic history are inlcuded in the test-files folder
@@ -46,10 +82,22 @@ For example, entering the number 7 will give you a forecast for 7 time steps aft
 If your data is daily like in the test data, it will forecast for the 7 days occuring after the last entry in history
 Press the submit button after entering an integer
 
-<GET FORECAST IMAGE HERE>
+<img 
+src="readme_images/request_forecast.png"
+raw=true
+alt="Forecast Request Image"
+/>
 
 
 The request will take about 30 seconds to 1 minute to process.
+Loading Screen will look like this
+
+<img 
+src="readme_images/loading.png"
+raw=true
+alt="Loading Page Image"
+/>
+
 The Machine Learning algorithm in the back-end trains on the historical data many times and validates its error during training
 This lets us know the accuracy of our algorithm on when applied to historical data.
 We train on a small section of the data, then make a prediction for the next period the model has not trained on yet, and record the error.
@@ -62,14 +110,22 @@ We graph the actual history, training predictions, and the requested forecast pe
 We also create a chart of the individual forecasted period predictions and the average training error
 These are displayed to the user on the forecast page.
 
-<FORECAST IMAGE HERE>
-
+<img 
+src="readme_images/forecast1.png"
+raw=true
+alt="Forecast Image #1"
+/>
+<img 
+src="readme_images/forecast2.png"
+raw=true
+alt="Forecast Image #2"
+/>
 After viewing their forecast, the user can return to the home page, where they can add more products, get more forecasts for other products, delete products that they have added or log out.
 Because this application is targetted at Enterprises, all users can see all the products and get forecasts, but can only delete a product from the databse that they have added.
 
 
 For more details see this link for a video of the Application running on a public url.
-<LINK HERE>
+https://www.youtube.com/watch?v=ltJxAehc2JU&t=34s
 
 Instructions for use
 
